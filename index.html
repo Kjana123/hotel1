@@ -551,7 +551,7 @@
 
         .social-icon:hover {
             background: var(--accent-color);
-            transform: translateY(-3px);
+            transform: translate découvréeY(-3px);
         }
 
         .footer-map {
@@ -973,7 +973,7 @@
         /* CSS for Scroll to Top Button */
         .scroll-top {
             position: fixed;
-            bottom: 30px;
+            bottom: 150px;
             right: 30px;
             width: 50px;
             height: 50px;
@@ -988,6 +988,8 @@
             visibility: hidden;
             transition: var(--transition);
             z-index: 990;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .scroll-top.active {
@@ -999,20 +1001,55 @@
             background: var(--accent-color);
             transform: translateY(-5px);
         }
-    </style>
 
-    <style>
-    .logo-container {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .logo-contact {
-        font-size: 0.9rem;
-        color: var(--text-color);
-        margin-top: 5px;
-    }
-</style>
+        /* Fixed Contact Buttons */
+        .fixed-contact-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 995;
+        }
+
+        .contact-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .phone-btn {
+            background: #007bff;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .logo-contact {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-top: 5px;
+        }
+    </style>
 
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1056,13 +1093,13 @@
                         <a href="#contact" class="nav-link">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="btn">Book Now</a>
+                        <a href="#contact" class="btn">Book Now</a>
                     </li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
                     <span class="bar"></span>
-                    <span class="bar"></span>
+                 <span class="bar"></span>
                 </div>
             </nav>
         </div>
@@ -1074,36 +1111,36 @@
             <div class="hero-content">
                 <h1 class="hero-title">Serenity Harbor Resort</h1>
                 <p class="hero-subtitle">Luxury by the Sea</p>
-                <a href="#" class="btn btn-accent">Book Your Stay</a>
+                <a href="#contact" class="btn btn-accent">Book Your Stay</a>
                 
                 <!-- Mini Booking Form -->
                 <div class="booking-form-container">
-                    <form class="booking-form">
+                    <form class="booking-form" action="rooms-available.html">
                         <div class="form-group">
                             <label class="form-label">Check-in</label>
-                            <input type="date" class="form-control" required>
+                            <input type="date" class="form-control" name="checkin" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Check-out</label>
-                            <input type="date" class="form-control" required>
+                            <input type="date" class="form-control" name="checkout" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Guests</label>
-                            <select class="form-control">
-                                <option>1 Adult</option>
-                                <option>2 Adults</option>
-                                <option>2 Adults, 1 Child</option>
-                                <option>2 Adults, 2 Children</option>
+                            <select class="form-control" name="guests">
+                                <option value="1">1 Adult</option>
+                                <option value="2">2 Adults</option>
+                                <option value="3">2 Adults, 1 Child</option>
+                                <option value="4">2 Adults, 2 Children</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Room Type</label>
-                            <select class="form-control">
-                                <option>Any Room</option>
-                                <option>Deluxe Room</option>
-                                <option>Ocean Suite</option>
-                                <option>Premium Villa</option>
-                                <option>Family Suite</option>
+                            <select class="form-control" name="roomType">
+                                <option value="any">Any Room</option>
+                                <option value="Deluxe Room">Deluxe Room</option>
+                                <option value="Ocean Suite">Ocean Suite</option>
+                                <option value="Premium Villa">Premium Villa</option>
+                                <option value="Family Suite">Family Suite</option>
                             </select>
                         </div>
                         <button type="submit" class="btn">Search</button>
@@ -1161,83 +1198,198 @@
         </div>
     </section>
 
-    <!-- Featured Rooms -->
-    <section id="rooms" class="rooms section">
-        <div class="container">
-            <h2 class="section-title">Featured Accommodations</h2>
-            <div class="room-grid">
-                <div class="room-card">
-                    <div class="room-img">
-                        <img src="/api/placeholder/600/400" alt="Deluxe Room">
-                    </div>
-                    <div class="room-info">
-                        <h3 class="room-title">Deluxe Ocean View</h3>
-                        <p class="room-price">$299 <span>per night</span></p>
-                        <div class="room-features">
-                            <div class="room-feature">
-                                <i class="fas fa-user"></i> 2 Guests
-                            </div>
-                            <div class="room-feature">
-                                <i class="fas fa-bed"></i> King Bed
-                            </div>
-                            <div class="room-feature">
-                                <i class="fas fa-bath"></i> En-suite
-                            </div>
-                        </div>
-                        <p>Spacious room with breathtaking ocean views, premium amenities, and elegant decor.</p>
-                        <a href="#" class="btn">Book Now</a>
-                    </div>
+    <!-- In index.html, update Featured Rooms section -->
+<section id="rooms" class="rooms section">
+    <div class="container">
+        <h2 class="section-title">Featured Accommodations</h2>
+        <div class="room-grid">
+            <div class="room-card">
+                <div class="room-img">
+                    <img src="/api/placeholder/600/400" alt="Deluxe Room">
                 </div>
-                <div class="room-card">
-                    <div class="room-img">
-                        <img src="/api/placeholder/600/400" alt="Premium Suite">
-                    </div>
-                    <div class="room-info">
-                        <h3 class="room-title">Premium Suite</h3>
-                        <p class="room-price">$499 <span>per night</span></p>
-                        <div class="room-features">
-                            <div class="room-feature">
-                                <i class="fas fa-user"></i> 4 Guests
-                            </div>
-                            <div class="room-feature">
-                                <i class="fas fa-bed"></i> 2 Beds
-                            </div>
-                            <div class="room-feature">
-                                <i class="fas fa-bath"></i> 2 Baths
-                            </div>
+                <div class="room-info">
+                    <h3 class="room-title">Deluxe Ocean View</h3>
+                    <p class="room-price"><s>4000</s> 3000<span>per night (25% off)</span></p>
+                    <div class="room-features">
+                        <div class="room-feature">
+                            <i class="fas fa-user"></i> 2 Guests
                         </div>
-                        <p>Luxurious suite with separate living area, private balcony, and exclusive access to premium amenities.</p>
-                        <a href="#" class="btn">Book Now</a>
-                    </div>
-                </div>
-                <div class="room-card">
-                    <div class="room-img">
-                        <img src="/api/placeholder/600/400" alt="Beachfront Villa">
-                    </div>
-                    <div class="room-info">
-                        <h3 class="room-title">Beachfront Villa</h3>
-                        <p class="room-price">$899 <span>per night</span></p>
-                        <div class="room-features">
-                            <div class="room-feature">
-                                <i class="fas fa-user"></i> 6 Guests
-                            </div>
-                            <div class="room-feature">
-                                <i class="fas fa-bed"></i> 3 Beds
-                            </div>
-                            <div class="room-feature">
-                                <i class="fas fa-bath"></i> 3 Baths
-                            </div>
+                        <div class="room-feature">
+                            <i class="fas fa-bed"></i> King Bed
                         </div>
-                        <p>Ultimate luxury with direct beach access, private pool, full kitchen, and personalized butler service.</p>
-                        <a href="#" class="btn">Book Now</a>
+                        <div class="room-feature">
+                            <i class="fas fa-bath"></i> En-suite
+                        </div>
                     </div>
+                    <p>Spacious room with breathtaking ocean views, premium amenities, and elegant decor.</p>
+                    <a href="#contact" class="btn">Book Now</a>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="#" class="btn">View All Rooms</a>
+            <div class="room-card">
+                <div class="room-img">
+                    <img src="/api/placeholder/600/400" alt="Premium Suite">
+                </div>
+                <div class="room-info">
+                    <h3 class="room-title">Premium Suite</h3>
+                    <p class="room-price"><s>8000</s> 6000 <span>per night (25% off)</span></p>
+                    <div class="room-features">
+                        <div class="room-feature">
+                            <i class="fas fa-user"></i> 4 Guests
+                        </div>
+                        <div class="room-feature">
+                            <i class="fas fa-bed"></i> 2 Beds
+                        </div>
+                        <div class="room-feature">
+                            <i class="fas fa-bath"></i> 2 Baths
+                        </div>
+                    </div>
+                    <p>Luxurious suite with separate living area, private balcony, and exclusive access to premium amenities.</p>
+                    <a href="#contact" class="btn">Book Now</a>
+                </div>
+            </div>
+            <div class="room-card">
+                <div class="room-img">
+                    <img src="/api/placeholder/600/400" alt="Beachfront Villa">
+                </div>
+                <div class="room-info">
+                    <h3 class="room-title">Super Delux Villa</h3>
+                    <p class="room-price"><s>10000</s> 7500 <span>per night (25% off)</span></p>
+                    <div class="room-features">
+                        <div class="room-feature">
+                            <i class="fas fa-user"></i> 6 Guests
+                        </div>
+                        <div class="room-feature">
+                            <i class="fas fa-bed"></i> 3 Beds
+                        </div>
+                        <div class="room-feature">
+                            <i class="fas fa-bath"></i> 3 Baths
+                        </div>
+                    </div>
+                    <p>Ultimate luxury with direct beach access, private pool, full kitchen, and personalized butler service.</p>
+                    <a href="#contact" class="btn">Book Now</a>
+                </div>
             </div>
         </div>
-    </section>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="#" class="btn">View All Rooms</a>
+        </div>
+    </div>
+</section>
+
+<!-- In rooms-available.html, update script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Room data with 25% discount
+        const roomsData = [
+            {
+                type: 'Deluxe Room',
+                originalPrice: 4000,
+                price: 3000,
+                maxGuests: 2,
+                beds: 'King Bed',
+                baths: 'En-suite',
+                description: 'Spacious room with breathtaking ocean views, premium amenities, and elegant decor.',
+                image: '/api/placeholder/600/400',
+                available: 5
+            },
+            {
+                type: 'Ocean Suite',
+                originalPrice: 8000,
+                price: 6000,
+                maxGuests: 4,
+                beds: '2 Beds',
+                baths: '2 Baths',
+                description: 'Luxurious suite with separate living area, private balcony, and exclusive access to premium amenities.',
+                image: '/api/placeholder/600/400',
+                available: 3
+            },
+            {
+                type: 'Premium Villa',
+                originalPrice: 10000,
+                price: 7500,
+                maxGuests: 6,
+                beds: '3 Beds',
+                baths: '3 Baths',
+                description: 'Ultimate luxury with direct beach access, private pool, full kitchen, and personalized butler service.',
+                image: '/api/placeholder/600/400',
+                available: 2
+            },
+            {
+                type: 'Family Suite',
+                originalPrice: 599,
+                price: 449.25,
+                maxGuests: 6,
+                beds: '2 Beds',
+                baths: '2 Baths',
+                description: 'Perfect for families with spacious living areas and child-friendly amenities.',
+                image: '/api/placeholder/600/400',
+                available: 4
+            }
+        ];
+
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const checkIn = urlParams.get('checkin');
+        const checkOut = urlParams.get('checkout');
+        const guests = parseInt(urlParams.get('guests'));
+        const roomType = urlParams.get('roomType');
+
+        // Filter available rooms
+        const availableRooms = roomsData.filter(room => {
+            if (roomType !== 'any' && room.type !== roomType) return false;
+            return (guests <= room.maxGuests && room.available > 0);
+        });
+
+        // Display rooms
+        const roomGrid = document.getElementById('available-rooms');
+        if (availableRooms.length > 0) {
+            availableRooms.forEach(room => {
+                const roomCard = document.createElement('div');
+                roomCard.className = 'room-card';
+                roomCard.innerHTML = `
+                    <div class="room-img">
+                        <img src="${room.image}" alt="${room.type}">
+                    </div>
+                    <div class="room-info">
+                        <h3 class="room-title">${room.type}</h3>
+                        <p class="availability-status">${room.available} Room${room.available > 1 ? 's' : ''} Available</p>
+                        <p class="room-price"><s>$${room.originalPrice}</s> $${room.price} <span>per night (25% off)</span></p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                <i class="fas fa-user"></i> ${room.maxGuests} Guests
+                            </div>
+                            <div class="room-feature">
+                                <i class="fas fa-bed"></i> ${room.beds}
+                            </div>
+                            <div class="room-feature">
+                                <i class="fas fa-bath"></i> ${room.baths}
+                            </div>
+                        </div>
+                        <p>${room.description}</p>
+                        <a href="index.html#contact" class="btn">Book Now</a>
+                    </div>
+                `;
+                roomGrid.appendChild(roomCard);
+            });
+        } else {
+            roomGrid.innerHTML = `
+                <div class="no-rooms">
+                    <h3>No rooms available</h3>
+                    <p>Please try different dates or room types.</p>
+                </div>
+            `;
+        }
+    });
+</script>
+
+<!-- Add to index.html styles -->
+<style>
+    .room-price s {
+        color: #999;
+        margin-right: 10px;
+        font-size: 0.9rem;
+    }
+</style>
 
     <!-- Testimonials -->
     <section class="testimonials section">
@@ -1281,7 +1433,7 @@
         <div class="container">
             <h2 class="cta-title">Plan Your Perfect Getaway</h2>
             <p class="cta-text">Escape to paradise and indulge in luxury. Book your stay now and enjoy exclusive offers for direct bookings.</p>
-            <a href="#" class="btn btn-accent">View Special Offers</a>
+            <a href="#contact" class="btn btn-accent">View Special Offers</a>
         </div>
     </section>
 
@@ -1352,8 +1504,8 @@
                     <div class="contact-info-item">
                         <i class="fas fa-envelope"></i>
                         <div>
-                            <p>info@serenityharborresort.com</p>
-                            <p>reservations@serenityharborresort.com</p>
+                            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="98f1f6fef7d8ebfdeafdf6f1eceff4fdebfff2efeff8eef2efe9b6fbf7f5">[email&#160;protected]</a></p>
+                            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f5988690879084999f9e9380b5829483969d9a878a9b9281969a87908790869a8781db969a98">[email&#160;protected]</a></p>
                         </div>
                     </div>
                     <div class="social-links">
@@ -1451,8 +1603,18 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
+    <!-- Fixed Contact Buttons -->
+    <div class="fixed-contact-buttons">
+        <a href="tel:+15551234567" class="contact-btn phone-btn">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/15551234567" class="contact-btn whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
     <!-- JavaScript -->
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
             // Hide loader when page is loaded
@@ -1571,14 +1733,14 @@
             });
 
             // Form submission handling
-            const forms = document.querySelectorAll('form');
-            forms.forEach(form => {
-                form.addEventListener('submit', function(e) {
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    alert('Thank you! Your form has been submitted successfully.');
-                    form.reset();
+                    alert('Thank you! Your message has been sent successfully.');
+                    contactForm.reset();
                 });
-            });
+            }
 
             // Automatic date range selection logic
             const checkInDate = document.querySelector('input[type="date"]:first-of-type');
@@ -1617,63 +1779,5 @@
             }
         });
     </script>
-
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Room availability mock data
-    const rooms = [
-        { type: 'Deluxe Room', available: 5, minGuests: 1, maxGuests: 2 },
-        { type: 'Ocean Suite', available: 3, minGuests: 2, maxGuests: 4 },
-        { type: 'Premium Villa', available: 2, minGuests: 4, maxGuests: 6 },
-        { type: 'Family Suite', available: 4, minGuests: 2, maxGuests: 6 }
-    ];
-
-    const bookingForm = document.querySelector('.booking-form');
-    
-    // Check if bookingForm exists before adding event listener
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const checkIn = new Date(document.querySelector('input[type="date"]:first-of-type').value);
-            const checkOut = new Date(document.querySelector('input[type="date"]:nth-of-type(2)').value);
-            const guestsSelect = document.querySelector('.booking-form select:nth-child(3)');
-            const guests = guestsSelect ? parseInt(guestsSelect.value.match(/\d+/)[0]) : 1;
-            const roomTypeSelect = document.querySelector('.booking-form select:nth-child(4)');
-            const roomType = roomTypeSelect ? roomTypeSelect.value : 'Any Room';
-
-            // Simple availability check
-            let availableRooms = rooms.filter(room => {
-                if (roomType !== 'Any Room' && room.type !== roomType) return false;
-                return (guests >= room.minGuests && 
-                        guests <= room.maxGuests && 
-                        room.available > 0);
-            });
-
-            // Display results
-            let message = availableRooms.length > 0 
-                ? `Found ${availableRooms.length} available room(s) for your selection:\n` + 
-                  availableRooms.map(r => `${r.type} (${r.available} left)`).join('\n')
-                : 'No rooms available for your selection. Please try different dates or room types.';
-            
-            alert(message);
-            
-            // Optionally scroll to rooms section
-            if (availableRooms.length > 0) {
-                const roomsSection = document.querySelector('#rooms');
-                if (roomsSection) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    window.scrollTo({
-                        top: roomsSection.getBoundingClientRect().top + window.pageYOffset - headerHeight,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    } else {
-        console.warn('Booking form not found in the DOM');
-    }
-});
-</script>
 </body>
 </html>
