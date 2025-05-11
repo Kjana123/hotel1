@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Rooms - Serenity Harbor Resort</title>
+    <style>
+        /* Inherit styles from index.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+        }
+
+        :root {
+            --primary-color: #0a617d;
+            --secondary-color: #f0f0f0;
+            --accent-color: #e0aa3e;
+            --text-color: #333;
+            --light-text: #fff;
+            --dark-bg: #222;
+            --light-bg: #fff;
+            --border-radius: 4px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            background: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            color: var(--text-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .room-card {
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .room-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .room-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .room-card:hover .room-img img {
+            transform: scale(1.1);
+        }
+
+        .room-info {
+            padding: 20px;
+        }
+
+        .room-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .room-price {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .room-price span {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            font-weight: normal;
+        }
+
+        .room-features {
+            display: flex;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .room-feature {
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .room-feature i {
+            margin-right: 5px;
+            color: var(--accent-color);
+        }
+
+        .availability-status {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .no-rooms {
+            text-align: center;
+            padding: 40px;
+            background: var(--secondary-color);
+            border-radius: var(--border-radius);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Available Rooms</h2>
+            <div class="room-grid" id="available-rooms">
+                <!-- Rooms will be populated by JavaScript -->
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="index.html" class="btn">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Room data
+            const roomsData = [
+                {
+                    type: 'Deluxe Room',
+                    price: 299,
+                    maxGuests: 2,
+                    beds: 'King Bed',
+                    baths: 'En-suite',
+                    description: 'Spacious room with breathtaking ocean views, premium amenities, and elegant decor.',
+                    image: '/api/placeholder/600/400',
+                    available: 5
+                },
+                {
+                    type: 'Ocean Suite',
+                    price: 499,
+                    maxGuests: 4,
+                    beds: '2 Beds',
+                    baths: '2 Baths',
+                    description: 'Luxurious suite with separate living area, private balcony, and exclusive access to premium amenities.',
+                    image: '/api/placeholder/600/400',
+                    available: 3
+                },
+                {
+                    type: 'Premium Villa',
+                    price: 899,
+                    maxGuests: 6,
+                    beds: '3 Beds',
+                    baths: '3 Baths',
+                    description: 'Ultimate luxury with direct beach access, private pool, full kitchen, and personalized butler service.',
+                    image: '/api/placeholder/600/400',
+                    available: 2
+                },
+                {
+                    type: 'Family Suite',
+                    price: 599,
+                    maxGuests: 6,
+                    beds: '2 Beds',
+                    baths: '2 Baths',
+                    description: 'Perfect for families with spacious living areas and child-friendly amenities.',
+                    image: '/api/placeholder/600/400',
+                    available: 4
+                }
+            ];
+
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const checkIn = urlParams.get('checkin');
+            const checkOut = urlParams.get('checkout');
+            const guests = parseInt(urlParams.get('guests'));
+            const roomType = urlParams.get('roomType');
+
+            // Filter available rooms
+            const availableRooms = roomsData.filter(room => {
+                if (roomType !== 'any' && room.type !== roomType) return false;
+                return (guests <= room.maxGuests && room.available > 0);
+            });
+
+            // Display rooms
+            const roomGrid = document.getElementById('available-rooms');
+            if (availableRooms.length > 0) {
+                availableRooms.forEach(room => {
+                    const roomCard = document.createElement('div');
+                    roomCard.className = 'room-card';
+                    roomCard.innerHTML = `
+                        <div class="room-img">
+                            <img src="${room.image}" alt="${room.type}">
+                        </div>
+                        <div class="room-info">
+                            <h3 class="room-title">${room.type}</h3>
+                            <p class="availability-status">${room.available} Room${room.available > 1 ? 's' : ''} Available</p>
+                            <p class="room-price">$${room.price} <span>per night</span></p>
+                            <div class="room-features">
+                                <div class="room-feature">
+                                    <i class="fas fa-user"></i> ${room.maxGuests} Guests
+                                </div>
+                                <div class="room-feature">
+                                    <i class="fas fa-bed"></i> ${room.beds}
+                                </div>
+                                <div class="room-feature">
+                                    <i class="fas fa-bath"></i> ${room.baths}
+                                </div>
+                            </div>
+                            <p>${room.description}</p>
+                            <a href="index.html#contact" class="btn">Book Now</a>
+                        </div>
+                    `;
+                    roomGrid.appendChild(roomCard);
+                });
+            } else {
+                roomGrid.innerHTML = `
+                    <div class="no-rooms">
+                        <h3>No rooms available</h3>
+                        <p>Please try different dates or room types.</p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
